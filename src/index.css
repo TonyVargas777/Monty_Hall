@@ -11,7 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./monty-hall-doors.jpg");
+  background-image: url("/monty-hall-doors.jpg");
   background-size: cover;
   background-position: center; 
   background-repeat: no-repeat; 
