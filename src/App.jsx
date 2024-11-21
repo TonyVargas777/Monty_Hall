@@ -144,7 +144,7 @@ const MontyHall = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Problema de Monty Hall</h1>
+      <br></br>
       <div style={{ display: "flex", justifyContent: "center", gap: "10px", margin: "20px 0" }}>
         {doors.map((door, index) => (
           <div
@@ -155,8 +155,7 @@ const MontyHall = () => {
               height: "180px",
               cursor: selectedDoor === null ? "pointer" : "default",
               position: "relative",
-              border: selectedDoor === index ? "1px solid blue" : "1px solid black",
-              opacity: revealedDoor === index ? 0.5 : 1,
+              border: selectedDoor === index ? "1px solid blue" : "1px solid black"
             }}
           >
             {revealedDoor === index ? (
@@ -200,7 +199,7 @@ const MontyHall = () => {
         </div>
       )}
       <div style={{ marginTop: "20px" }}>
-        <h3>Estadísticas:</h3>
+        <h2>Estadísticas:</h2>
         <p>Cambiaste de puerta y ganaste: {changeWinCount} veces.</p>
         <p>Cambiaste de puerta y perdiste: {changeLossCount} veces.</p>
         <p>Porcentaje de victorias cambiando: {changeGamesCount > 0 ? ((changeWinCount / changeGamesCount) * 100).toFixed(2) : 0}%.</p>
