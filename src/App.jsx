@@ -16,7 +16,10 @@ const MontyHall = () => {
   const [keepGamesCount, setKeepGamesCount] = useState(0); // Juegos donde se mantuvo
   const [totalGames, setTotalGames] = useState(0); // Total de juegos
 
-  const [simulationResults, setSimulationResults] = useState({ wins: 0, losses: 0 }); // Resultados de simulaciones
+  const [simulationResults, setSimulationResults] = useState({
+    wins: 0,
+    losses: 0,
+  }); // Resultados de simulaciones
 
   // Barajar las puertas al azar
   const shuffleDoors = () => {
@@ -34,8 +37,7 @@ const MontyHall = () => {
       const options = doors
         .map((door, index) => ({ type: door, index }))
         .filter(
-          (door) =>
-            door.type === "goat" && door.index !== selectedDoor // Solo cabras y no la seleccionada
+          (door) => door.type === "goat" && door.index !== selectedDoor // Solo cabras y no la seleccionada
         );
 
       if (options.length > 0) {
@@ -100,12 +102,14 @@ const MontyHall = () => {
       const options = shuffledDoors
         .map((door, index) => ({ type: door, index }))
         .filter(
-          (door) =>
-            door.type === "goat" && door.index !== initialChoice // Solo cabras y no la inicial
+          (door) => door.type === "goat" && door.index !== initialChoice // Solo cabras y no la inicial
         );
 
-      const revealedDoor = options[Math.floor(Math.random() * options.length)].index; // Revelar una cabra
-      const finalChoice = [0, 1, 2].find((i) => i !== initialChoice && i !== revealedDoor); // Cambiar elección
+      const revealedDoor =
+        options[Math.floor(Math.random() * options.length)].index; // Revelar una cabra
+      const finalChoice = [0, 1, 2].find(
+        (i) => i !== initialChoice && i !== revealedDoor
+      ); // Cambiar elección
       const result = shuffledDoors[finalChoice];
 
       // Contar cambios
@@ -143,82 +147,117 @@ const MontyHall = () => {
   const doorImages = ["/puerta1.jpg", "/puerta2.jpg", "/puerta3.jpg"]; // Rutas de las imágenes
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <br></br>
-      <div style={{ display: "flex", justifyContent: "center", gap: "10px", margin: "20px 0" }}>
+    <div className="monty-hall-game">
+      <div className="doors-container">
         {doors.map((door, index) => (
           <div
             key={index}
+            className={`door ${selectedDoor === index ? "selected" : ""}`}
             onClick={() => handleSelectDoor(index)}
-            style={{
-              width: "120px",
-              height: "180px",
-              cursor: selectedDoor === null ? "pointer" : "default",
-              position: "relative",
-              border: selectedDoor === index ? "1px solid blue" : "1px solid black"
-            }}
           >
             {revealedDoor === index ? (
-              <img src="/goat.png" alt="Goat" style={{ width: "100%", height: "100%" }} />
+              <img src="/goat.png" alt="Goat" className="door-image" />
             ) : finalChoice !== null && finalChoice === index ? (
               <img
                 src={doors[index] === "car" ? "/car.png" : "/goat.png"}
                 alt={doors[index]}
-                style={{ width: "100%", height: "100%" }}
+                className="door-image"
               />
             ) : (
               <img
                 src={doorImages[index]}
                 alt={`Puerta ${index + 1}`}
-                style={{ width: "100%", height: "100%" }}
+                className="door-image"
               />
             )}
           </div>
         ))}
       </div>
-      {selectedDoor !== null && finalChoice === null && (
-        <div>
-          <p>Has seleccionado la Puerta {selectedDoor + 1}.</p>
-          <p>Revelamos una cabra detrás de la Puerta {revealedDoor + 1}.</p>
-          <div style={{ margin: "10px 0" }}>
-            <button onClick={() => handleFinalChoice(selectedDoor)}>Mantener elección</button>
-            <button
-              onClick={() =>
-                handleFinalChoice([0, 1, 2].find((i) => i !== selectedDoor && i !== revealedDoor))
-              }
-            >
-              Cambiar elección
-            </button>
-          </div>
-        </div>
-      )}
-      {finalChoice !== null && (
-        <div>
-          <h2>{result === "car" ? "¡Ganaste el coche! 🎉" : "Obtuviste una cabra 🐐"}</h2>
-          <button onClick={resetGame}>Jugar de nuevo</button>
-        </div>
-      )}
-      <div style={{ marginTop: "20px" }}>
-        <h2>Estadísticas:</h2>
-        <p>Cambiaste de puerta y ganaste: {changeWinCount} veces.</p>
-        <p>Cambiaste de puerta y perdiste: {changeLossCount} veces.</p>
-        <p>Porcentaje de victorias cambiando: {changeGamesCount > 0 ? ((changeWinCount / changeGamesCount) * 100).toFixed(2) : 0}%.</p>
-        <p>Cambiaste de puerta: {changeGamesCount} veces.</p>
-        <p>Porcentaje de victorias manteniendo: {keepGamesCount > 0 ? ((keepWinCount / keepGamesCount) * 100).toFixed(2) : 0}%.</p>
-        <p>Mantuviste la puerta: {keepGamesCount} veces.</p>
-      </div>
-      <div>
-        <button onClick={() => simulateGames(10000)}>Simular 10000 juegos</button>
-        {simulationResults.changeWins > 0 && (
+      <div className="controls">
+        {selectedDoor !== null && finalChoice === null && (
           <div>
-            <p>Porcentaje de victorias al cambiar: {(simulationResults.changeWins / 100).toFixed(2)}%</p>
-            <p>Porcentaje de derrotas al cambiar: {(simulationResults.changeLosses / 100).toFixed(2)}%</p>
+            <p>Has seleccionado la Puerta {selectedDoor + 1}.</p>
+            <p>Revelamos una cabra detrás de la Puerta {revealedDoor + 1}.</p>
+            <div style={{ margin: "10px 0" }}>
+              <button onClick={() => handleFinalChoice(selectedDoor)}>
+                Mantener elección
+              </button>
+              <button
+                onClick={() =>
+                  handleFinalChoice(
+                    [0, 1, 2].find(
+                      (i) => i !== selectedDoor && i !== revealedDoor
+                    )
+                  )
+                }
+              >
+                Cambiar elección
+              </button>
+            </div>
           </div>
         )}
+        {finalChoice !== null && (
+          <div>
+            <h2>
+              {result === "car"
+                ? "¡Ganaste el coche! 🎉"
+                : "Obtuviste una cabra 🐐"}
+            </h2>
+            <button onClick={resetGame}>Jugar de nuevo</button>
+          </div>
+        )}
+        <div style={{ marginTop: "20px" }}>
+          <h2>Estadísticas:</h2>
+          <p>Cambiaste de puerta y ganaste: {changeWinCount} veces.</p>
+          <p>Cambiaste de puerta y perdiste: {changeLossCount} veces.</p>
+          <p>
+            Porcentaje de victorias cambiando:{" "}
+            {changeGamesCount > 0
+              ? ((changeWinCount / changeGamesCount) * 100).toFixed(2)
+              : 0}
+            %.
+          </p>
+          <p>Cambiaste de puerta: {changeGamesCount} veces.</p>
+          <p>
+            Porcentaje de victorias manteniendo:{" "}
+            {keepGamesCount > 0
+              ? ((keepWinCount / keepGamesCount) * 100).toFixed(2)
+              : 0}
+            %.
+          </p>
+          <p>Mantuviste la puerta: {keepGamesCount} veces.</p>
+        </div>
+        <div>
+          <button onClick={() => simulateGames(10000)}>
+            Simular 10000 juegos
+          </button>
+          {simulationResults.changeWins > 0 && (
+            <div>
+              <p>
+                Porcentaje de victorias al cambiar:{" "}
+                {(simulationResults.changeWins / 100).toFixed(2)}%
+              </p>
+              <p>
+                Porcentaje de derrotas al cambiar:{" "}
+                {(simulationResults.changeLosses / 100).toFixed(2)}%
+              </p>
+            </div>
+          )}
+        </div>
+        <hr />
+        <footer className="footer">
+          <p>Monty Hall Problem Simulator</p>
+          <p>
+            Este proyecto es una implementación del famoso problema de Monty
+            Hall utilizando React. El juego simula la experiencia del programa
+            de televisión "Let's Make a Deal", donde un concursante tiene que
+            elegir entre tres puertas, detrás de una de las cuales hay un coche
+            y detrás de las otras dos hay cabras. El objetivo del juego es
+            entender las probabilidades de ganar el coche al cambiar de puerta
+            después de que se revele una cabra.
+          </p>
+        </footer>
       </div>
-      <footer style={{ marginTop: "20px", borderTop: "1px solid #ccc", paddingTop: "10px" }}>
-        <p>Problema de Monty Hall</p>
-      </footer>
     </div>
   );
 };

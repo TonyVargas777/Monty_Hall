@@ -34,8 +34,14 @@ body {
   display: flex;
   place-items: center;
   justify-content: center;
-  min-width: 320px;
+  min-width: 420px;
   min-height: 100vh;
+}
+
+footer {
+  margin-top: "20px";
+  border-top: "1px solid #ccc";
+  padding-top: "10px";
 }
 
 h2 {
@@ -55,7 +61,7 @@ p {
   padding: 10px; 
   border-radius: 8px; 
   margin: 10px 0;
-  max-width: 100%;
+  max-width: 420px;
 }
 
 button {
@@ -75,6 +81,45 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+.monty-hall-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.doors-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.door {
+  width: 120px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.door.selected {
+  border: 2px solid white; /* Mantiene el borde azul */
+  filter: brightness(1.5); /* Reduce el brillo al 70% para oscurecer */
+  opacity: 0.9; /* Opción adicional para darle un efecto más sutil */
+}
+
+.door img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.controls {
+  text-align: center;
 }
 
 @media (prefers-color-scheme: light) {

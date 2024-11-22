@@ -9,13 +9,13 @@ El simulador permite al usuario:
 - Revelar una cabra detrás de una de las otras dos puertas.
 - Decidir si quiere mantener su elección inicial o cambiar a la otra puerta.
 - Ver las estadísticas en tiempo real sobre cuántas veces se ganó o perdió cambiando de puerta y cuántas veces se ganó o perdió manteniendo la puerta seleccionada.
-- Simular 1000 juegos al azar para mostrar los resultados de cambiar o mantener la puerta.
+- Simular 10000 juegos al azar para mostrar los resultados de cambiar o mantener la puerta.
 
 ## Características
 
 - **Simulación interactiva**: El usuario puede seleccionar una puerta, ver cómo se revela una cabra y tomar una decisión sobre si cambiar o mantener su elección.
 - **Estadísticas**: Al final de cada juego, se muestran las estadísticas de cuántas veces se ganó o perdió cambiando de puerta, y cuántas veces se ganó o perdió manteniendo la puerta.
-- **Simulación de 1000 juegos**: Permite ejecutar una simulación automática de 1000 juegos para obtener estadísticas precisas sobre el porcentaje de victorias y derrotas al cambiar o mantener la puerta.
+- **Simulación de 10000 juegos**: Permite ejecutar una simulación automática de 10000 juegos para obtener estadísticas precisas sobre el porcentaje de victorias y derrotas al cambiar o mantener la puerta.
 
 ## Instalación
 
