@@ -1,3 +1,5 @@
+<img src="public/monty-hall-doors.jpg"/>
+
 # Monty Hall Problem Simulator
 
 Este proyecto es una implementación del famoso problema de Monty Hall utilizando React. El juego simula la experiencia del programa de televisión "Let's Make a Deal", donde un concursante tiene que elegir entre tres puertas, detrás de una de las cuales hay un coche y detrás de las otras dos hay cabras. El objetivo del juego es entender las probabilidades de ganar el coche al cambiar de puerta después de que se revele una cabra.
