@@ -24,4 +24,4 @@ Para correr el proyecto en tu máquina local, sigue estos pasos:
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/tu_usuario/monty-hall.git
+   git clone https://github.com/TonyVargas777/Monty_Hall.git
